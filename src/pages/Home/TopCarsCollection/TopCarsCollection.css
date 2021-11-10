@@ -1,0 +1,127 @@
+.top-cars-collection {
+    /* background: url('https://msmotorindia.in/assets/images/latest-bg.jpg'); */
+    background: url('https://cardealerseowebsites.com/uploads/styles/parallax_background_lander-min.png');
+    /* background: url('https://images.unsplash.com/photo-1508098682722-e99c43a406b2?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=1470&q=80') */
+    background-size: cover;
+}
+.car-card {
+    position: relative;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 350px;
+    background: rgba(255,255,255,0.5);
+    border-radius: 10px;
+    overflow: hidden;
+    transition: 0.5s;
+}
+.car-card:hover {
+    background: #fff;
+    cursor: pointer;
+    box-shadow: 0 0 0 10px rgba(255,255,255,0.2);
+}
+.car-card::before {
+    content: '';
+    position: absolute;
+    bottom: -79%;
+    left: -120%;
+    width: 100%;
+    height: 100%;
+    background: #7300ab !important;
+    transition: 0.5s;
+    z-index: -1;
+    box-sizing: border-box;
+    border-top: 5px solid #430064;
+    transform: skewX(-5deg);
+}
+.car-card:hover::before {
+ left: -50%;
+}
+.car-card::after {
+    content: '';
+    position: absolute;
+    bottom: -79%;
+    right: -120%;
+    width: 100%;
+    height: 100%;
+    background: #ff0;
+    transition: 0.5s;
+    z-index: -1;
+    box-sizing: border-box;
+    border-top: 5px solid #ef9b0f;
+    transform: skewX(-5deg);
+}
+.car-card:hover::after {
+ right: -50%;
+}
+.car-card h2 {
+    width: 100%;
+    margin: 0;
+    padding: 5px;
+    text-align: center;
+    box-sizing: border-box;
+    transition: 0.5s;
+}
+.car-card:hover h2 {
+    background: #ff0057;
+    color: #fff;
+}
+/* 
+.match-details {
+
+} */
+.team1 {
+    width: 175px;
+    float: left;
+    padding: 0px 20px;
+    box-sizing: border-box;
+    text-align: center;
+}
+.team2 {
+    width: 175px;
+    float: left;
+    padding: 0px 20px;
+    box-sizing: border-box;
+    text-align: center;
+}
+.team1 img,
+.team1 img {
+    width: 100%;
+}
+.details {
+    width: 200px;
+    min-height: 200px;
+    float: left;
+    text-align: center;
+}
+h3.team-name {
+    text-align: right;
+    /* padding: 15px 0 0; */
+    margin-bottom: 15px;
+    font-size: 22px;
+    transition: 0.5s;
+}
+.team1 h3.team-name {
+    text-align: left;
+
+}
+.car-card:hover .team1 h3.team-name {
+    color: #fff;
+
+}
+
+/* own style  */
+.car-img img {
+    width: 100%;
+    object-fit: cover;
+    height: 100%;
+}
+.car-img {
+    height: 200px;
+    overflow: hidden;
+}
+.top-car-header h2{
+    font-size: 52px;
+    font-family: 'Rakkas', cursive;
+    
+}

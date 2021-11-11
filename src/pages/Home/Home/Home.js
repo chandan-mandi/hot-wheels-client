@@ -1,6 +1,6 @@
 import React from 'react';
 import Footer from '../../shared/Footer/Footer';
-import Navigation from '../../shared/Navigation/Navigation';
+import MenuBar from '../../shared/Navigation/MenuBar';
 import Banner from '../Banner/Banner';
 import Reviews from '../Reviews/Reviews';
 import TopCarsCollection from '../TopCarsCollection/TopCarsCollection';
@@ -8,7 +8,7 @@ import TopCarsCollection from '../TopCarsCollection/TopCarsCollection';
 const Home = () => {
     return (
         <div>
-            <Navigation></Navigation>
+            <MenuBar></MenuBar>
             <Banner></Banner>
             <TopCarsCollection></TopCarsCollection>
             <Reviews></Reviews>

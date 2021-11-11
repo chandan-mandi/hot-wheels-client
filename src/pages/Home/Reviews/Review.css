@@ -49,3 +49,11 @@
       height: 50px;
       object-fit: cover;
   }
+  .slick-slide {
+    padding: 20px;
+  }
+  @media (max-width: 672px) {
+    .slick-slide {
+      width: 100%;
+    }
+  }

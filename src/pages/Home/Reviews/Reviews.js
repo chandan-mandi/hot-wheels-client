@@ -4,6 +4,7 @@ import './Review.css';
 
 import LeftArrow from "../../../assets/left-arrow.svg"
 import RightArrow from "../../../assets/right-arrow.svg"
+import ReviewCard from './ReviewCard/ReviewCard';
 
 
 const Reviews = () => {
@@ -19,28 +20,21 @@ const Reviews = () => {
         dots: false,
         infinite: false,
         speed: 500,
-        slidesToShow: 4,
+        slidesToShow: 2,
         slidesToScroll: 1,
         initialSlide: 0,
         prevArrow: <SlickArrowLeft />,
         nextArrow: <SlickArrowRight />,
     };
     return (
-        <div className="container">
-            <h2> Single Item</h2>
+        <div className="container py-5">
+            <h2>Client Says</h2>
             <Slider {...settings}>
                 {[1, 2, 3, 4,5].map((item, index) =>
-                    <div
-                        className="card__container--inner--card"
-                        key={index}>
-                        <img src={item.url} alt="hero_img" />
-                        <div className="card__container--inner--card--date_time">
-                            <p>4D-5D</p>
-                            <p>Delhi</p>
-                        </div>
-                        <p>Meghalaya Backpacking</p>
-                        <p>starts at <span>₹15,999/-</span></p>
-                    </div>
+                    <ReviewCard
+                    key={index}
+                    item={item}
+                    ></ReviewCard>
                 )}
             </Slider>
         </div>

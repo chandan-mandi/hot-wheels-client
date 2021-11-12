@@ -1,6 +1,6 @@
 @import url('https://fonts.googleapis.com/css2?family=IBM+Plex+Serif:ital,wght@0,300;0,400;1,300&family=Rakkas&display=swap');
 .App {
-  text-align: center;
+  /* text-align: center; */
   font-family: 'IBM Plex Serif', serif;
 }
 
@@ -52,3 +52,7 @@
   font-size: 45px;
   font-family: 'Rakkas';
 }
+.main-dashboard {
+  overflow: hidden;
+}
+

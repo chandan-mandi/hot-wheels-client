@@ -1,5 +1,6 @@
 import React from 'react';
 import { Container, Nav, Navbar, Button } from 'react-bootstrap';
+import toast, { Toaster } from 'react-hot-toast';
 import { Link } from 'react-router-dom';
 import useAuth from '../../../components/hooks/useAuth';
 
@@ -9,7 +10,7 @@ const MenuBar = () => {
 
     const handleLogout = () => {
         Logout();
-        alert('Successfully LogOut')
+        toast.error('Logged Out')
     }
     return (
         <Navbar collapseOnSelect expand="lg" bg="dark" variant="dark" sticky="top">
@@ -22,10 +23,15 @@ const MenuBar = () => {
                         <Nav.Link as={Link} to="/carsCollection">Cars</Nav.Link>
                         <Nav.Link as={Link} to="/sellCar">Sell Car</Nav.Link>
                         <Nav.Link as={Link} to="/about">About</Nav.Link>
+                        {user.email && <Nav.Link as={Link} to="/dashboard">Dashboard</Nav.Link>}
                         {!user?.email ?
                             <Link to="/login"><Button variant="danger">Login</Button></Link>
                             :
+                            <div>
                             <Button onClick={handleLogout} variant="danger">{user.email} <br /> Logout </Button>
+                            <Toaster/>
+                            </div>
+                            
                         }
                         {/* <Nav.Link href="#pricing">Pricing</Nav.Link> */}
                         {/* <NavDropdown title="Dropdown" id="collasible-nav-dropdown">

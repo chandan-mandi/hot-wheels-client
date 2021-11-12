@@ -1,16 +1,17 @@
 
 import React from 'react';
 import { useForm } from 'react-hook-form';
-import { Link } from 'react-router-dom';
+import { Link, useHistory } from 'react-router-dom';
 import useAuth from '../../../components/hooks/useAuth';
 import MenuBar from '../../shared/Navigation/MenuBar'
 
 const Register = () => {
+    const history = useHistory();
     const { register, handleSubmit, reset } = useForm();
     const {createUser, isLoading, user} = useAuth();
     const onSubmit = data => {
         console.log(data)
-        createUser(data.email, data.password)
+        createUser(data.email, data.password, data.name, history)
         alert('User Created Successfully')
         reset();
     };

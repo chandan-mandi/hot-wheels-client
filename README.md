@@ -2,7 +2,7 @@
 
 
 <a  href="https://hot-wheels-d4134.web.app/">
-<img  width="100%"  height="100%"  src="https://i.ibb.co/qW7Gkhk/screencapture-hot-wheels-d4134-web-app-2021-11-14-21-59-49.png"/>
+<img  width="100%"  height="100%"  src="https://i.ibb.co/M5dX7TG/landing.png"/>
 </a>
 
 ## About & Features

@@ -34,9 +34,9 @@ const Login = () => {
         signInUsingGoogle(location, history);
     }
     return (
-        <div>
+        <div className="pt-5">
             <MenuBar></MenuBar>
-            <Container>
+            <Container className="py-5">
                 <h2>Login Page</h2>
                 <form onSubmit={handleSubmit(onSubmit)}>
                     <div className="form-main" style={{ borderRadius: "15px", maxWidth: '85rem', margin: '0 auto' }}>

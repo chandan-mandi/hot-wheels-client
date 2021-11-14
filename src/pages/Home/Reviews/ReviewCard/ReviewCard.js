@@ -1,7 +1,9 @@
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import React from 'react';
 import Rating from 'react-rating';
+import Fade from 'react-reveal/Fade';
 import './ReviewCard.css';
+
 const ReviewCard = ({ item }) => {
     console.log(item);
     return (
@@ -11,11 +13,11 @@ const ReviewCard = ({ item }) => {
                     <img src="https://lh3.googleusercontent.com/ogw/ADea4I5r3I8B9WmmurWPFz3ir_5IYTbcOeBF3SONGQwVXA=s83-c-mo" alt="" />
                 </div>
                 <p>{item.comment}</p>
-                <Rating 
-                emptySymbol="far fa-star star-color"
-                fullSymbol="fas fa-star star-color"
-                initialRating={item.rating}
-                readonly>RAte</Rating>
+                <Rating
+                    emptySymbol="far fa-star star-color"
+                    fullSymbol="fas fa-star star-color"
+                    initialRating={item.rating}
+                    readonly>RAte</Rating>
                 <h4>{item.name} <br /> <span>{item.address || 'Dhaka, Bangladesh'}</span></h4>
             </div>
         </div>

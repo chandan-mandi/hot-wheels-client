@@ -1,8 +1,10 @@
 import React from 'react';
 import { Col, Spinner } from 'react-bootstrap';
 import { useHistory } from 'react-router-dom';
+import Fade from 'react-reveal/Fade';
 
-const CarCard = ({ car , loading}) => {
+
+const CarCard = ({ car, loading }) => {
     const { name, _id, price, img, mileage } = car;
     const history = useHistory();
     const handleCarDetail = (id) => {
@@ -10,13 +12,12 @@ const CarCard = ({ car , loading}) => {
         history.push(uri)
     }
     return (
-        <>
-            
-                <Col md={4} className="py-5" onClick={() => handleCarDetail(_id)}>
-                <div className="car-card">
+        <Col md={4} className="py-5" onClick={() => handleCarDetail(_id)}>
+            <div className="car-card">
+                <Fade bottom duration={1000} distance="40px">
                     <h2>{name.charAt(0).toUpperCase() + name.slice(1)}</h2>
                     <div className="car-img">
-                        {loading ? <Spinner animation="border" variant="danger" /> :<img src={img} alt="" />}
+                        {loading ? <Spinner animation="border" variant="danger" /> : <img src={img} alt="" />}
                     </div>
                     <div className="match-details">
                         <div className="team1">
@@ -30,9 +31,9 @@ const CarCard = ({ car , loading}) => {
                             </h3>
                         </div>
                     </div>
-                </div>
-            </Col>
-            </>
+                </Fade>
+            </div>
+        </Col>
     );
 };
 

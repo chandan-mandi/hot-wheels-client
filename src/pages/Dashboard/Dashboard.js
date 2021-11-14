@@ -12,37 +12,36 @@ import Profile from '../../components/UserDashboard/Profile/Profile';
 import SendReview from '../../components/UserDashboard/SendReview/SendReview';
 import Update from '../../components/UserDashboard/Update/Update';
 import AdminRoute from '../Login/AdminRoute/AdminRoute';
-import MenuBar from '../shared/MenuBar/MenuBar';
+import './DashBoard.css';
 
 const Dashboard = () => {
     const { admin } = useAuth();
     let { path, url } = useRouteMatch();
     return (
-        <div className="main-dashboard">
+        <div className="main-dashboard p-5">
             {/* <MenuBar /> */}
             <Row>
-                <Col md={3} sm={12}>
+                <Col md={3} sm={12} className="dashboard-right">
                     <h2>Dashboard</h2>
                     <ul>
                         {!admin && <div>
-                        <Link to={`${url}`}> <li>Profile</li> </Link>
-                        <Link to={`${url}/payment`}> <li>Paymet</li> </Link>
-                        <Link to={`${url}/myBookings`}> <li>My Bookings</li> </Link>
-                        <Link to={`${url}/sendReview`}> <li>Review</li> </Link>
+                        <Link to={`${url}`} > <li style={{background: '#7206f7', color: '#fff', width: '200px'}}>Profile</li> </Link>
+                        <Link to={`${url}/payment`}> <li style={{background: '#f70661', color: '#fff', width: '200px'}}>Paymet</li> </Link>
+                        <Link to={`${url}/myBookings`}> <li style={{background: '#f70661', color: '#fff', width: '200px'}}>My Bookings</li> </Link>
+                        <Link to={`${url}/sendReview`}> <li style={{background: '#f70661', color: '#fff', width: '200px'}}>Review</li> </Link>
                         </div>}
-                        {/* <Link> <li>My Orders</li> </Link> */}
-                        <hr />
+                        
                         {admin && <div>
-                            <Link to={`${url}/addCarDetails`}> <li>Add a Car</li> </Link>
-                            <Link to={`${url}/makeAdmin`}> <li>Make Admin</li> </Link>
-                            <Link to={`${url}/manageAllBooking`}> <li>Manage All Booking</li> </Link>
-                            <Link to={`${url}/manageAllCar`}> <li>Manage All Car</li> </Link>
+                            <Link to={`${url}/addCarDetails`}> <li style={{background: '#7206f7', color: '#fff', width: '200px'}}>Add a Car</li> </Link>
+                            <Link to={`${url}/makeAdmin`}> <li style={{background: '#f70661', color: '#fff', width: '200px'}}>Make Admin</li> </Link>
+                            <Link to={`${url}/manageAllBooking`}> <li style={{background: '#7206f7', color: '#fff', width: '200px'}}>Manage All Booking</li> </Link>
+                            <Link to={`${url}/manageAllCar`}> <li style={{background: '#f70661', color: '#fff', width: '200px'}}>Manage All Car</li> </Link>
                         </div>
                         }
-                        <Link to="/"> <li>Logout</li> </Link>
-                        <Link to="/"> <li>Back To Home</li> </Link>
+                       
+                        <Link to="/"> <li style={{background: '#f70661', color: '#fff', width: '200px', marginTop: '500px'}}>Back To Home</li> </Link>
                     </ul> </Col>
-                <Col md={9} sm={12}>
+                <Col md={9} sm={12} className="dashboard-left">
                     <Switch>
                         <Route exact path={path}>
                             <Profile></Profile>

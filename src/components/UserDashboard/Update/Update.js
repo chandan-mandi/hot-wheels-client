@@ -10,7 +10,7 @@ const Update = () => {
     const { register, handleSubmit } = useForm();
     const onSubmit = data => {
         console.log(data)
-        const url = `http://localhost:5000/availableCars/${id}`
+        const url = `https://safe-crag-22535.herokuapp.com/availableCars/${id}`
         fetch(url, {
             method: 'PUT',
             headers: {

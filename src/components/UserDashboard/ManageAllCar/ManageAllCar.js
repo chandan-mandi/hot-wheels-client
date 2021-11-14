@@ -23,7 +23,7 @@ const ManageAllCar = () => {
     const handleDelete = (id) => {
         const proceed = window.confirm('Are You sure to Delete the Car Details?')
         if (proceed) {
-            const url = `http://localhost:5000/deletedCar/${id}`
+            const url = `https://safe-crag-22535.herokuapp.com/deletedCar/${id}`
             fetch(url, {
                 method: 'DELETE'
             })

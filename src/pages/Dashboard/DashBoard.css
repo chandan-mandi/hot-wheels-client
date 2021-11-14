@@ -1,0 +1,14 @@
+
+.main-dashboard li {
+    list-style: none;
+    padding: 5px 10px;
+    margin-right: 3px;
+    margin-bottom: 3px;
+    font-weight: bold;
+    border-radius: 4px;
+    cursor: pointer;
+}
+.main-dashboard a {
+    text-decoration: none;
+
+}

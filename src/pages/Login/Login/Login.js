@@ -16,17 +16,13 @@ const Login = () => {
     // const redirect_uri = location.state?.from || 'home';
 
     const onSubmit = data => {
-        console.log(data)
+        
         loginUsingPassword(data.email, data.password, location, history)
         if (isLoading) {
             return <div class="spinner-border" role="status">
                 <span class="sr-only">Loading...</span>
             </div>
         }
-        else {
-            toast.success('Login Success')
-        }
-
         reset();
         // history.push(redirect_uri)
     };
@@ -51,7 +47,6 @@ const Login = () => {
                         </Row>
                     </div>
                 </form>
-
                 <Toaster />
                 <h4 className="py-3">New User ? <Link to="/register">Please Register</Link></h4>
                 <Button onClick={handleGoogleLogin} variant="warning" className="my-3">Continue with Google</Button>

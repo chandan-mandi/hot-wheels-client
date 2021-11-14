@@ -42,6 +42,7 @@ const MyOrders = () => {
                             <th>Email</th>
                             <th>Date</th>
                             <th>Status</th>
+                            <th>Action</th>
                         </tr>
                     </thead>
                     {myBookings.map((order, index) => (

@@ -14,6 +14,8 @@ import CarDetals from './pages/CarDetails/CarDetals';
 import BookingCar from './pages/CarDetails/CarBooking/BookingCar';
 import Dashboard from './pages/Dashboard/Dashboard';
 import Contact from './pages/Contact/Contact';
+import UserLogin from './pages/Login/Login/UserLogin';
+import UserRegister from './pages/Login/Register/UserRegister';
 
 function App() {
   return (
@@ -36,6 +38,9 @@ function App() {
             <Route path="/contact">
               <Contact></Contact>
             </Route>
+            <Route path="/login">
+              <UserLogin/>
+            </Route>          
             <PrivateRoute path="/carBooking/:id">
               <BookingCar></BookingCar>
             </PrivateRoute>
@@ -43,10 +48,7 @@ function App() {
               <Dashboard></Dashboard>
             </PrivateRoute>
             <Route path="/register">
-              <Register></Register>
-            </Route>
-            <Route path="/login">
-              <Login></Login>
+              <UserRegister/>
             </Route>
             <Route exact path="*">
               <NotFound></NotFound>

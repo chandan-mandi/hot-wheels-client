@@ -28,10 +28,6 @@ const ManageAllBooking = () => {
                 })
         }
     }
-    // ORDER UPDATE HANDLER
-    const handleUpdate = (id) => {
-
-    }
     // HANDLE STATUS CHANGE
     const handleStatusChange = (id, status) => {
         let modifiedBooking = [];
@@ -62,6 +58,7 @@ const ManageAllBooking = () => {
                             <th>Email</th>
                             <th>Date</th>
                             <th>Status</th>
+                            <th>Action</th>
                         </tr>
                     </thead>
                     {booking.map((order, index) => (
@@ -83,7 +80,6 @@ const ManageAllBooking = () => {
                                     <Toaster />
                                 </td>
                                 <Button onClick={() => handleDelete(order._id)} variant="warning bg-warning m-1">Delete</Button>
-                                <Button onClick={() => handleUpdate(order._id)} variant="warning bg-warning m-1">Update</Button>
                             </tr>
                         </tbody>
                     ))}

@@ -38,10 +38,10 @@ const useFirebase = () => {
                const destination = location?.state?.from || '/dashboard'
                 history.replace(destination)
                 setAuthError("");
+                
             })
             .catch((error) => {
-                const errorCode = error.code;
-                const errorMessage = error.message;
+                setAuthError(error.message);
             })
             .finally(() => setIsLoading(false));
     }

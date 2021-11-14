@@ -5,10 +5,12 @@ import useAuth from '../../components/hooks/useAuth';
 import AddCarDetails from '../../components/UserDashboard/AddCarDetails/AddCarDetails';
 import MakeAdmin from '../../components/UserDashboard/MakeAdmin/MakeAdmin';
 import ManageAllBooking from '../../components/UserDashboard/ManageAllBooking/ManageAllBooking';
+import ManageAllCar from '../../components/UserDashboard/ManageAllCar/ManageAllCar';
 import MyOrders from '../../components/UserDashboard/MyOrders/MyOrders';
 import Payment from '../../components/UserDashboard/Payment/Payment';
 import Profile from '../../components/UserDashboard/Profile/Profile';
 import SendReview from '../../components/UserDashboard/SendReview/SendReview';
+import Update from '../../components/UserDashboard/Update/Update';
 import AdminRoute from '../Login/AdminRoute/AdminRoute';
 import MenuBar from '../shared/MenuBar/MenuBar';
 
@@ -37,6 +39,7 @@ const Dashboard = () => {
                             <Link to={`${url}/manageAllCar`}> <li>Manage All Car</li> </Link>
                         </div>
                         }
+                        <Link to="/"> <li>Logout</li> </Link>
                         <Link to="/"> <li>Back To Home</li> </Link>
                     </ul> </Col>
                 <Col md={9} sm={12}>
@@ -61,6 +64,12 @@ const Dashboard = () => {
                         </AdminRoute>
                         <AdminRoute path={`${path}/manageAllBooking`}>
                             <ManageAllBooking />
+                        </AdminRoute>
+                        <AdminRoute path={`${path}/manageAllCar`}>
+                            <ManageAllCar/>
+                        </AdminRoute>
+                        <AdminRoute exact path={`${path}/update/:id`}>
+                            <Update/>
                         </AdminRoute>
 
                     </Switch>

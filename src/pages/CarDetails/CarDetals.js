@@ -15,7 +15,7 @@ const CarDetals = () => {
 
     const history = useHistory();
     useEffect(() => {
-        const url = `http://localhost:5000/availableCars/${id}`
+        const url = `https://safe-crag-22535.herokuapp.com/availableCars/${id}`
         fetch(url)
             .then(res => res.json())
             .then(data => setSpecificCar(data))

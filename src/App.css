@@ -89,3 +89,6 @@
 .spinner-border {
   margin: 0 auto;
 }
+.model-img img {
+  width: 100%;
+}

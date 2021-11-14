@@ -9,7 +9,7 @@ const TopCarsCollection = () => {
     const [cars, setCars] = useState([]);
  
     useEffect(() => {
-        fetch('http://localhost:5000/availableCars')
+        fetch('https://safe-crag-22535.herokuapp.com/availableCars')
         .then(res => res.json())
         .then(data => {
             setCars(data);

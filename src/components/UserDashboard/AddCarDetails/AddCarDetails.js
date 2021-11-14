@@ -8,7 +8,7 @@ const AddCarDetails = () => {
     const { register, handleSubmit, reset } = useForm();
     const onSubmit = data => {
         console.log(data);
-        axios.post('http://localhost:5000/availableCars', data)
+        axios.post('https://safe-crag-22535.herokuapp.com/availableCars', data)
             .then(res => {
                 if (res.data.insertedId) {
                     toast.success('Car Details Successfully Uploaded')

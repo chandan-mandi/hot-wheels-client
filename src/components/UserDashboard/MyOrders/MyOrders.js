@@ -8,14 +8,14 @@ const MyOrders = () => {
     const [myBookings, setMyBookings] = useState([]);
 
     useEffect(() => {
-        fetch(`http://localhost:5000/myBooking/${user.email}`)
+        fetch(`https://safe-crag-22535.herokuapp.com/myBooking/${user.email}`)
         .then(res => res.json())
         .then(data => setMyBookings(data))
     },[])
     const handleDelete = (id) => {
         const proceed = window.confirm('Are You sure to Cancel the Booking?')
         if(proceed){
-            const url = `http://localhost:5000/deletedBooking/${id}`
+            const url = `https://safe-crag-22535.herokuapp.com/deletedBooking/${id}`
             fetch(url, {
                 method: 'DELETE'
             })

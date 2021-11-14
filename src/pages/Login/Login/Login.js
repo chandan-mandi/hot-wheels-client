@@ -1,14 +1,15 @@
 import React from 'react';
+import { Button, Col, Container, Row } from 'react-bootstrap';
 import { useForm } from 'react-hook-form';
 import toast, { Toaster } from 'react-hot-toast';
 import { Link, useLocation, useHistory } from 'react-router-dom';
 import useAuth from '../../../components/hooks/useAuth';
-import MenuBar from '../../shared/Navigation/MenuBar';
+import MenuBar from '../../shared/MenuBar/MenuBar';
 
 
 const Login = () => {
     const { register, handleSubmit, reset } = useForm();
-    const { loginUsingPassword, isLoading, user } = useAuth();
+    const { loginUsingPassword, signInUsingGoogle, isLoading, user } = useAuth();
 
     const location = useLocation();
     const history = useHistory();
@@ -29,22 +30,32 @@ const Login = () => {
         reset();
         // history.push(redirect_uri)
     };
+    const handleGoogleLogin = () => {
+        signInUsingGoogle(location, history);
+    }
     return (
         <div>
             <MenuBar></MenuBar>
-            <h2>Login Page</h2>
-            <form onSubmit={handleSubmit(onSubmit)}>
-                <input placeholder="Email" {...register("email")} />
-                <br />
-                <input placeholder="Password" {...register("password")} />
-                <br />
-                <input type="submit" value="Login" />
-            </form>
-            
-            <Toaster/>
-            <h4>New User ? <Link to="/register">Please Register</Link></h4>
-            {isLoading && <p>try to Login</p>}
-            {user.email && <h2>Login Success</h2>}
+            <Container>
+                <h2>Login Page</h2>
+                <form onSubmit={handleSubmit(onSubmit)}>
+                    <div className="form-main" style={{ borderRadius: "15px", maxWidth: '85rem', margin: '0 auto' }}>
+                        <Row >
+                            <Col md={6} xs={12} className="pr-md-4">
+                                <input className="our-form-input" placeholder="Email" {...register("email")} />
+                                <br />
+                                <input className="our-form-input" placeholder="Password" {...register("password")} />
+                                <br />
+                                <Button type="submit" variant="success">Login</Button>
+                            </Col>
+                        </Row>
+                    </div>
+                </form>
+
+                <Toaster />
+                <h4 className="py-3">New User ? <Link to="/register">Please Register</Link></h4>
+                <Button onClick={handleGoogleLogin} variant="warning" className="my-3">Continue with Google</Button>
+            </Container>
         </div>
     );
 };

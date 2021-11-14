@@ -1,8 +1,8 @@
 import React from 'react';
-import { Col } from 'react-bootstrap';
+import { Col, Spinner } from 'react-bootstrap';
 import { useHistory } from 'react-router-dom';
 
-const CarCard = ({ car }) => {
+const CarCard = ({ car , loading}) => {
     const { name, _id, price, img, mileage } = car;
     const history = useHistory();
     const handleCarDetail = (id) => {
@@ -10,11 +10,13 @@ const CarCard = ({ car }) => {
         history.push(uri)
     }
     return (
-            <Col md={4} className="py-5" onClick={() => handleCarDetail(_id)}>
+        <>
+            
+                <Col md={4} className="py-5" onClick={() => handleCarDetail(_id)}>
                 <div className="car-card">
                     <h2>{name.charAt(0).toUpperCase() + name.slice(1)}</h2>
                     <div className="car-img">
-                        <img src={img} alt="" />
+                        {loading ? <Spinner animation="border" variant="danger" /> :<img src={img} alt="" />}
                     </div>
                     <div className="match-details">
                         <div className="team1">
@@ -30,6 +32,7 @@ const CarCard = ({ car }) => {
                     </div>
                 </div>
             </Col>
+            </>
     );
 };
 

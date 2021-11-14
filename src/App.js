@@ -13,6 +13,7 @@ import PrivateRoute from './components/PrivateRoute/PrivateRoute';
 import CarDetals from './pages/CarDetails/CarDetals';
 import BookingCar from './pages/CarDetails/CarBooking/BookingCar';
 import Dashboard from './pages/Dashboard/Dashboard';
+import Contact from './pages/Contact/Contact';
 
 function App() {
   return (
@@ -31,6 +32,9 @@ function App() {
             </Route>
             <Route path="/carDetails/:id">
               <CarDetals></CarDetals>
+            </Route>
+            <Route path="/contact">
+              <Contact></Contact>
             </Route>
             <PrivateRoute path="/carBooking/:id">
               <BookingCar></BookingCar>

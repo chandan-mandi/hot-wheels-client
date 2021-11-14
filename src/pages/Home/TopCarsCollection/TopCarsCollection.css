@@ -1,8 +1,9 @@
 .top-cars-collection {
     /* background: url('https://msmotorindia.in/assets/images/latest-bg.jpg'); */
-    background: url('https://cardealerseowebsites.com/uploads/styles/parallax_background_lander-min.png');
+    background: url("https://image.freepik.com/free-vector/realistic-car-speedometer-background_134830-838.jpg");
     /* background: url('https://images.unsplash.com/photo-1508098682722-e99c43a406b2?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=1470&q=80') */
     background-size: cover;
+    background-attachment: fixed;
 }
 .car-card {
     position: relative;
@@ -124,4 +125,11 @@ h3.team-name {
     font-size: 52px;
     font-family: 'Rakkas', cursive;
     
+}
+.top-car-header h2 span {
+    color: #f75d34;
+
+}
+.top-car-header {
+    color: #fff;
 }

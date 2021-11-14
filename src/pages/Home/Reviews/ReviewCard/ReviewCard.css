@@ -5,6 +5,7 @@
     text-align: center;
     background: #fff;
     border-radius: 5px;
+    min-height: 300px;
 }
 .box:hover {
     background: #ff0057;
@@ -55,8 +56,8 @@
     top: 20px;
     right: 40px;
     width: 80px;
-    height: 60px;
-    background: url("https://www.nicepng.com/png/full/245-2457825_quotes-right-png-icon-quotation.png");
+    height: 80px;
+    background: url("https://cdn-icons-png.flaticon.com/512/25/25418.png");
     background-size: cover;
     opacity: 0.05;
     pointer-events: none;
@@ -72,8 +73,8 @@
     bottom: 20px;
     left: 40px;
     width: 80px;
-    height: 60px;
-    background: url("https://www.nicepng.com/png/full/245-2457825_quotes-right-png-icon-quotation.png");
+    height: 80px;
+    background: url("https://cdn-icons-png.flaticon.com/512/25/25418.png");
     background-size: cover;
     opacity: 0.05;
     pointer-events: none;
@@ -83,4 +84,8 @@
 .box:hover:after {
     transform: rotate(180deg) translateY(-60px);
     opacity: 1;
+}
+
+.star-color {
+    color: gold;
 }

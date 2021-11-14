@@ -3,7 +3,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import React, { useEffect, useState } from 'react';
 import { Col, Container, Row, Button, Modal } from 'react-bootstrap';
 import { useHistory, useParams } from 'react-router';
-import MenuBar from '../shared/Navigation/MenuBar';
+import MenuBar from '../shared/MenuBar/MenuBar';
 import './CarDetails.css';
 
 const CarDetals = () => {
@@ -57,7 +57,7 @@ const CarDetals = () => {
                     <Col lg={2} md={2} sm={6}>
                         <div className="car-specification">
                             <div className="spec-icon">
-
+                                <FontAwesomeIcon ico></FontAwesomeIcon>
                             </div>
                             <h6>{mileage}kmpl</h6>
                         </div>

@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { Table, Button } from 'react-bootstrap';
+import toast from 'react-hot-toast';
 import useAuth from '../../hooks/useAuth';
 
 const MyOrders = () => {
@@ -11,8 +12,22 @@ const MyOrders = () => {
         .then(res => res.json())
         .then(data => setMyBookings(data))
     },[])
-    const handleDelete = () => {
-
+    const handleDelete = (id) => {
+        const proceed = window.confirm('Are You sure to Cancel the Booking?')
+        if(proceed){
+            const url = `http://localhost:5000/deletedBooking/${id}`
+            fetch(url, {
+                method: 'DELETE'
+            })
+            .then(res => res.json())
+            .then(data => {
+                if(data.deletedCount > 0){
+                    toast.success('Booking Cancel')
+                    const remaining = myBookings.filter(booking => booking?._id !== id)
+                    setMyBookings(remaining);
+                }
+            })
+        }
     }
     return (
         <div>

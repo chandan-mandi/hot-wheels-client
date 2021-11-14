@@ -42,10 +42,11 @@
 
 /* own css style  */
 .cars-collection-page {
-  background: url('https://image.freepik.com/free-vector/realistic-car-headlights-ad-composition-headlights-with-green-purple-illumination_1284-56577.jpg');
+  background: url('https://image.freepik.com/free-photo/colorful-abstract-textured-background_53876-101786.jpg');
   background-size: cover;
   background-position: center center;
   background-attachment: fixed;
+  padding: 50px;
 }
 .cars-collection-page h2 {
   color: #fff;
@@ -56,3 +57,35 @@
   overflow: hidden;
 }
 
+.checked-icon {
+  display: inline-block;
+  background: #34C48B;
+    padding: 4px;
+    border-radius: 50%;
+    margin-right: 5px;
+}
+.facilities-text p {
+  display: inline;
+  font-size: 22px;
+}
+.checked-icon-inner {
+  color: white;
+}
+.buy-used-car-section .row {
+
+  align-items: center;
+}
+.client-reviews {
+  background: #f1f1f1;
+}
+.facilities-text h2,
+.client-reviews h2 {
+  font-family: 'Rakkas';
+}
+.facilities-text span,
+.client-reviews h2 {
+  color: #f75d34;
+}
+.spinner-border {
+  margin: 0 auto;
+}

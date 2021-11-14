@@ -6,13 +6,27 @@ import toast, { Toaster } from 'react-hot-toast';
 const ManageAllBooking = () => {
     const [booking, setBooking] = useState([]);
     useEffect(() => {
-        fetch('http://localhost:5000/booking')
+        fetch('https://safe-crag-22535.herokuapp.com/booking')
             .then(res => res.json())
             .then(data => setBooking(data))
     }, [])
     // ORDER DETELE HANDLER
     const handleDelete = (id) => {
-
+        const proceed = window.confirm('Are You sure to Cancel the Booking?')
+        if (proceed) {
+            const url = `http://localhost:5000/deletedBooking/${id}`
+            fetch(url, {
+                method: 'DELETE'
+            })
+                .then(res => res.json())
+                .then(data => {
+                    if (data.deletedCount > 0) {
+                        toast.success('Booking Cancel')
+                        const remaining = booking.filter(booking => booking?._id !== id)
+                        setBooking(remaining);
+                    }
+                })
+        }
     }
     // ORDER UPDATE HANDLER
     const handleUpdate = (id) => {
@@ -22,18 +36,18 @@ const ManageAllBooking = () => {
     const handleStatusChange = (id, status) => {
         let modifiedBooking = [];
         booking.forEach(order => {
-            if(order._id === id) {
+            if (order._id === id) {
                 order.status = status;
             }
             modifiedBooking.push(order)
         })
         setBooking(modifiedBooking)
 
-        const modifiedStatus = {id, status}
+        const modifiedStatus = { id, status }
 
-        axios.patch(`http://localhost:5000/booking/${id}`, modifiedStatus)
-        .then(res => res.data && toast.success(`Set to ${status}`))
-        .catch(error => alert(error.message))
+        axios.patch(`https://safe-crag-22535.herokuapp.com/booking/${id}`, modifiedStatus)
+            .then(res => res.data && toast.success(`Set to ${status}`))
+            .catch(error => alert(error.message))
     }
     return (
         <div className="px-3">
@@ -66,7 +80,7 @@ const ManageAllBooking = () => {
                                         <option className="bg-white text-muted">On going</option>
                                         <option className="bg-white text-muted">Done</option>
                                     </select>
-                                    <Toaster/>
+                                    <Toaster />
                                 </td>
                                 <Button onClick={() => handleDelete(order._id)} variant="warning bg-warning m-1">Delete</Button>
                                 <Button onClick={() => handleUpdate(order._id)} variant="warning bg-warning m-1">Update</Button>

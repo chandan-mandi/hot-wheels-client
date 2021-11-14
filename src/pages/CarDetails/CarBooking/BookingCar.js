@@ -4,7 +4,7 @@ import { Col, Form, Button, Row, Container } from 'react-bootstrap';
 import { useForm } from 'react-hook-form';
 import { useHistory, useParams } from 'react-router';
 import useAuth from '../../../components/hooks/useAuth';
-import MenuBar from '../../shared/Navigation/MenuBar';
+import MenuBar from '../../shared/MenuBar/MenuBar';
 import './BookingCar.css';
 import toast, { Toaster } from 'react-hot-toast';
 
@@ -34,7 +34,7 @@ const BookingCar = () => {
                 if (res.data.insertedId) {
                     toast.success('Booking Succesful')
                     reset();
-                    history.push('/')
+                    history.push('/carsCollection')
                 }
             })
     }

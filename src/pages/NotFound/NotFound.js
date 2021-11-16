@@ -1,9 +1,11 @@
 import React from 'react';
 import { Col, Container, Row } from 'react-bootstrap';
+import MenuBar from '../shared/MenuBar/MenuBar';
 
 const NotFound = () => {
     return (
-        <div className="eror-page">
+        <div className="error-page py-5">
+            <MenuBar/>
             <Container style={{margin:"50px 0"}}>
                 <Row style={{alignItems:"center"}}>
                     <Col md={6} sm={12}>

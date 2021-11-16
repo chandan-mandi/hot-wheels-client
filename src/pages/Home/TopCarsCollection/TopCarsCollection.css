@@ -133,3 +133,7 @@ h3.team-name {
 .top-car-header {
     color: #fff;
 }
+.top-cars-collection .car-card::before,
+.top-cars-collection .car-card::after {
+    bottom: -79%;
+}

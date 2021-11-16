@@ -31,7 +31,8 @@
 .login-page .navbar .nav-link, 
 .register-page .navbar .nav-link, 
 .car-booking .navbar .nav-link, 
-.car-details .navbar .nav-link
+.car-details .navbar .nav-link,
+.error-page .navbar .nav-link
 {
   color: #000 !important;
 }

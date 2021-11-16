@@ -2,12 +2,13 @@ import React, { useEffect, useState } from 'react';
 import { Col, Button, Row } from 'react-bootstrap';
 import { useForm } from 'react-hook-form';
 import toast, { Toaster } from 'react-hot-toast';
-import { useParams } from 'react-router';
+import { useHistory, useParams } from 'react-router';
 
 const Update = () => {
     const { id } = useParams();
     const [car, setCar] = useState({});
     const { register, handleSubmit } = useForm();
+    const history = useHistory();                
     const onSubmit = data => {
         console.log(data)
         const url = `https://safe-crag-22535.herokuapp.com/availableCars/${id}`
@@ -25,8 +26,7 @@ const Update = () => {
                     setCar({})
                 }
             })
-
-
+        history.push('/dashboard/manageAllCar')
     };
     console.log(car);
 
@@ -35,11 +35,11 @@ const Update = () => {
         fetch(url)
             .then(res => res.json())
             .then(data => setCar(data))
-    }, [])
+    }, [id])
 
     return (
         <div className="container py-5">
-            <h2>update Car Details {id}</h2>
+            <h2>Update <span style={{ color: 'orange' }}>{car.name}</span> Car Details</h2>
             <form onSubmit={handleSubmit(onSubmit)}>
                 <div className="form-main" style={{ borderRadius: "15px", maxWidth: '85rem' }}>
                     <Row>

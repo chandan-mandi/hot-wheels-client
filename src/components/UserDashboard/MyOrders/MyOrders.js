@@ -1,65 +1,74 @@
 import React, { useEffect, useState } from 'react';
-import { Table, Button } from 'react-bootstrap';
+import { Table, Button, Spinner } from 'react-bootstrap';
 import toast from 'react-hot-toast';
+import { Link } from 'react-router-dom';
 import useAuth from '../../hooks/useAuth';
 
 const MyOrders = () => {
-    const {user} = useAuth();
+    const { user } = useAuth();
     const [myBookings, setMyBookings] = useState([]);
+    const [loading, setLoading] = useState(true);
+    console.log(myBookings);
 
     useEffect(() => {
         fetch(`https://safe-crag-22535.herokuapp.com/myBooking/${user.email}`)
-        .then(res => res.json())
-        .then(data => setMyBookings(data))
-    },[])
+            .then(res => res.json())
+            .then(data => {
+                setMyBookings(data)
+                setLoading(false);
+            })
+
+    }, [user.email])
     const handleDelete = (id) => {
         const proceed = window.confirm('Are You sure to Cancel the Booking?')
-        if(proceed){
+        if (proceed) {
             const url = `https://safe-crag-22535.herokuapp.com/deletedBooking/${id}`
             fetch(url, {
                 method: 'DELETE'
             })
-            .then(res => res.json())
-            .then(data => {
-                if(data.deletedCount > 0){
-                    toast.success('Booking Cancel')
-                    const remaining = myBookings.filter(booking => booking?._id !== id)
-                    setMyBookings(remaining);
-                }
-            })
+                .then(res => res.json())
+                .then(data => {
+                    if (data.deletedCount > 0) {
+                        toast.success('Booking Cancel')
+                        const remaining = myBookings.filter(booking => booking?._id !== id)
+                        setMyBookings(remaining);
+                    }
+                })
         }
     }
     return (
         <div>
-            <h2>My Orders Available Here</h2>
-            <div>
-                <h2>Total Booking {myBookings.length}</h2>
-                <Table striped bordered hover>
-                    <thead>
-                        <tr>
-                            <th>SL No</th>
-                            <th>Name</th>
-                            <th>Email</th>
-                            <th>Date</th>
-                            <th>Status</th>
-                            <th>Action</th>
-                        </tr>
-                    </thead>
-                    {myBookings.map((order, index) => (
+            <div className="cardHeader">
+                <h2>Recent Orders</h2>
+                <Link to="" className="view-all-btn">View All</Link>
+            </div>
+            <table>
+                <thead>
+                    <tr>
+                        <td>Name</td>
+                        <td>Car Name</td>
+                        <td>Address</td>
+                        <td>Test Drive Date</td>
+                        <td>Status</td>
+                        <td>Cancel Order</td>
+                    </tr>
+                </thead>
+                {loading ? <Spinner animation="border" variant="danger" /> :
+                    myBookings.map(order => (
                         <tbody>
                             <tr>
-                                <td>{index + 1}</td>
-                                <td>{order.name.toUpperCase()}</td>
-                                <td>{order.email}</td>
-                                <td>{order.orderTime}</td>
-                                <td>{order.status}</td>
-                               
-                                <Button onClick={() => handleDelete(order._id)} variant="warning bg-warning m-1">Delete</Button>
+                                <td>{order.name}</td>
+                                <td>{order.CarName}</td>
+                                <td>{order.address}</td>
+                                <td>{order.testDriveDate}</td>
+                                <td><span className={order.status === "pending" ? "status pending" : order.status === "Pending" ? "status pending" : order.status === "On going" ? "status inprogress" : order.status === "Done" ? "status delivered" : null}>{order.status}</span></td>
+                                <Button onClick={() => handleDelete(order._id)} variant="danger bg-danger m-1">Order Cancel</Button>
                             </tr>
+
                         </tbody>
                     ))}
-                </Table>
-            </div>
+            </table>
+
         </div>
     );
 };

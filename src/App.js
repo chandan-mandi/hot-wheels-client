@@ -1,21 +1,18 @@
-import logo from './logo.svg';
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import './App.css';
 import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
 import Home from './pages/Home/Home/Home';
 import CarsCollection from './pages/CarsCollection/CarsCollection';
-import Register from './pages/Login/Register/Register';
 import NotFound from './pages/NotFound/NotFound';
 import AuthProvider from './components/Context/AuthProvider';
-import Login from './pages/Login/Login/Login';
 import PrivateRoute from './components/PrivateRoute/PrivateRoute';
 import CarDetals from './pages/CarDetails/CarDetals';
 import BookingCar from './pages/CarDetails/CarBooking/BookingCar';
-import Dashboard from './pages/Dashboard/Dashboard';
 import Contact from './pages/Contact/Contact';
 import UserLogin from './pages/Login/Login/UserLogin';
 import UserRegister from './pages/Login/Register/UserRegister';
+import MainDashboard from './pages/MainDashboard/MainDashboard';
 
 function App() {
   return (
@@ -41,11 +38,11 @@ function App() {
             <Route path="/login">
               <UserLogin/>
             </Route>          
+            <PrivateRoute path="/dashboard">
+              <MainDashboard/>
+            </PrivateRoute>          
             <PrivateRoute path="/carBooking/:id">
               <BookingCar></BookingCar>
-            </PrivateRoute>
-            <PrivateRoute path="/dashboard">
-              <Dashboard></Dashboard>
             </PrivateRoute>
             <Route path="/register">
               <UserRegister/>

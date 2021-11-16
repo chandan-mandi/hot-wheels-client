@@ -28,7 +28,7 @@ const UserLogin = () => {
         signInUsingGoogle(location, history)
     }
     return (
-        <>
+        <div className="login-page">
         <MenuBar/>
         <div className="login-section">
             <div className="imgBx">
@@ -60,13 +60,13 @@ const UserLogin = () => {
                     <h3>Login with social media</h3>
                     <ul className="sci">
                         <li><img src="https://cdn-icons-png.flaticon.com/512/20/20837.png" alt="" /></li>
-                        <li onClick={handleGoogleLogin}><img src="https://cdn-icons.flaticon.com/png/512/104/premium/104093.png?token=exp=1636892792~hmac=95b1cbb8fa02435061f2bf648c921955" alt="" /></li>
-                        <li><img src="https://cdn-icons.flaticon.com/png/512/2175/premium/2175377.png?token=exp=1636892890~hmac=f1db8b0c4abc7788dc653fce4a003b3c" alt="" /></li>
+                        <li onClick={handleGoogleLogin}><img src="https://cdn-icons.flaticon.com/png/512/104/premium/104093.png?token=exp=1637010902~hmac=152beb063acce40f3aaa86073b06c1fc" alt="" /></li>
+                        <li><img src="https://cdn-icons-png.flaticon.com/512/733/733609.png" alt="" /></li>
                     </ul>
                 </div>
             </div>
         </div>
-        </>
+        </div>
     );
 };
 

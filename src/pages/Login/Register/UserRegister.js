@@ -1,3 +1,5 @@
+import { faGoogle } from '@fortawesome/free-brands-svg-icons';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import React from 'react';
 import { useForm } from 'react-hook-form';
 import toast, { Toaster } from 'react-hot-toast';
@@ -29,7 +31,7 @@ const UserRegister = () => {
         signInUsingGoogle(location, history);
     }
     return (
-        <>
+        <div className="register-page">
         <MenuBar/>
         <div className="login-section">
             <div className="imgBx">
@@ -65,13 +67,13 @@ const UserRegister = () => {
                     <h3>Login with social media</h3>
                     <ul className="sci">
                         <li><img src="https://cdn-icons-png.flaticon.com/512/20/20837.png" alt="" /></li>
-                        <li onClick={handleGoogleLogin}><img src="https://cdn-icons.flaticon.com/png/512/104/premium/104093.png?token=exp=1636892792~hmac=95b1cbb8fa02435061f2bf648c921955" alt="" /></li>
-                        <li><img src="https://cdn-icons.flaticon.com/png/512/2175/premium/2175377.png?token=exp=1636892890~hmac=f1db8b0c4abc7788dc653fce4a003b3c" alt="" /></li>
+                        <li onClick={handleGoogleLogin}><img src="https://cdn-icons-png.flaticon.com/512/2991/2991147.png" alt="" /></li>
+                        <li><img src="https://cdn-icons-png.flaticon.com/512/733/733609.png" alt="" /></li>
                     </ul>
                 </div>
             </div>
         </div>
-        </>
+        </div>
     );
 };
 

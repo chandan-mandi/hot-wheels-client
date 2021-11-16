@@ -30,7 +30,7 @@ const Login = () => {
         signInUsingGoogle(location, history);
     }
     return (
-        <div className="pt-5">
+        <div className="login-page pt-5">
             <MenuBar></MenuBar>
             <Container className="py-5">
                 <h2>Login Page</h2>

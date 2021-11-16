@@ -1,23 +1,23 @@
 import React, { useEffect, useState } from 'react';
-import { Table, Button, Spinner } from 'react-bootstrap';
+import { Button, Spinner } from 'react-bootstrap';
 import toast, { Toaster } from 'react-hot-toast';
-import { useHistory, useRouteMatch } from 'react-router';
+import { useHistory } from 'react-router';
+import { Link } from 'react-router-dom';
 
 const ManageAllCar = () => {
     const [loading, setLoading] = useState(true);
     const [cars, setCars] = useState([]);
     const history = useHistory();
-    let { path, url } = useRouteMatch();
- 
+
     useEffect(() => {
         fetch('https://safe-crag-22535.herokuapp.com/availableCars')
-        .then(res => res.json())
-        .then(data => {
-            setCars(data);
-            setLoading(false);
-        })
-        .catch(error => toast.error(error.message))
-    },[])
+            .then(res => res.json())
+            .then(data => {
+                setCars(data);
+                setLoading(false);
+            })
+            .catch(error => toast.error(error.message))
+    }, [])
 
     // CAR DETELE HANDLER
     const handleDelete = (id) => {
@@ -44,36 +44,37 @@ const ManageAllCar = () => {
     }
     return (
         <div>
-            <h2>Manage All Car</h2>
-            <div>
-                <h2>Total Booking {cars.length}</h2>
-                <Table striped bordered hover>
-                    <thead>
-                        <tr>
-                            <th>SL No</th>
-                            <th>Picture</th>
-                            <th>Name</th>
-                            <th>Price</th>
-                            <th>Action</th>
-                        </tr>
-                    </thead>
-                    { loading ? <Spinner animation="border" variant="danger" /> :
+            <div className="cardHeader">
+                <h2>Manage All Car</h2>
+                <h2>Total Cars {cars.length}</h2>
+                <Link to="" className="view-all-btn">View All</Link>
+            </div>
+            <table>
+                <thead>
+                    <tr>
+                        <td>SL NO</td>
+                        <td>Car Photo</td>
+                        <td>Car Name</td>
+                        <td>Price</td>
+                        <td>UPDATE</td>
+                        <td>DELETE</td>
+                    </tr>
+                </thead>
+                {loading ? <Spinner animation="border" variant="success" /> :
                     cars.map((car, index) => (
                         <tbody>
                             <tr>
                                 <td>{index + 1}</td>
-                                <td style={{width: '180px'}}><img src={car.img} style={{width: '150px', height: '100px'}} alt="" /> </td>
+                                <td style={{ width: '180px' }}><img src={car.img} style={{ width: '130px', height: '100px', borderRadius: '5px' }} alt="" /> </td>
                                 <td>{car.name.toUpperCase()}</td>
                                 <td>{car.price}</td>
-                                
-                                <Button onClick={() => handleDelete(car._id)} variant="danger bg-danger text-light m-1">Delete</Button>
-                                <Button onClick={() => handleUpdate(car._id)} variant="warning bg-warning m-1">Update</Button>
+                                <td><Button onClick={() => handleUpdate(car._id)} variant="warning bg-warning m-1">Update</Button></td> 
+                                <td><Button onClick={() => handleDelete(car._id)} variant="danger bg-danger text-light m-1">Delete</Button></td> 
                             </tr>
                         </tbody>
                     ))}
-                </Table>
-            </div>
-            <Toaster/>
+            </table>
+            <Toaster />
         </div>
     );
 };

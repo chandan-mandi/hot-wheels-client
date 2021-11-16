@@ -26,7 +26,7 @@ const CarDetals = () => {
         history.push(uri)
     }
     return (
-        <div>
+        <div className="car-details py-5">
             <MenuBar />
             <Container className="py-5">
                 <h2 className="text-center pb-4">Car Details Here</h2>

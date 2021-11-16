@@ -39,7 +39,7 @@ const BookingCar = () => {
             })
     }
     return (
-        <div>
+        <div className="car-booking py-5">
             <MenuBar />
             <Container className="py-5">
                 <h2 className="text-center py-2">Booking Confirmation</h2>

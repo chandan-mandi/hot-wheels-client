@@ -3,12 +3,13 @@ import { Container, Nav, Navbar, Button } from 'react-bootstrap';
 import toast, { Toaster } from 'react-hot-toast';
 import { Link } from 'react-router-dom';
 import useAuth from '../../../components/hooks/useAuth';
+import ProfilePopper from '../../../components/ProfilePopper/ProfilePopper';
 
 const MenuBar = () => {
     const { user, Logout } = useAuth();
     const [isSticky, setSticky] = useState(false);
     const [isCollapsed, setCollapsed] = useState(null);
-    console.log(user);
+    const {photoURL: img} = user;
 
     const handleLogout = () => {
         Logout();
@@ -30,7 +31,7 @@ const MenuBar = () => {
         expand="lg"
         variant="light" 
         fixed="top"
-        className={(isSticky || isCollapsed) ? "shadow-sm bg-white py-2" : "py-4"}>
+        className={(isSticky || isCollapsed) ? "text-kalo shadow-sm bg-white py-2" : "py-4"}>
             <Container>
                 <Navbar.Brand 
                 as={Link}
@@ -50,10 +51,13 @@ const MenuBar = () => {
                         {/* <Nav.Link href="#reviews">Reviews</Nav.Link> */}
                         {user.email && <Nav.Link as={Link} to="/dashboard">Dashboard</Nav.Link>}
                         {!user?.email ?
-                            <Link to="/login"><Button variant="danger">Login</Button></Link>
+                            <Link to="/login" className="btn-book">Login</Link>
                             :
                             <div>
-                            <Button onClick={handleLogout} variant="danger">{user.email} <br /> Logout </Button>
+                            <div className="user-img">
+                                <ProfilePopper/>
+                            </div>
+                            {/* <Button onClick={handleLogout} variant="danger">Logout </Button> */}
                             <Toaster/>
                             </div>
                             

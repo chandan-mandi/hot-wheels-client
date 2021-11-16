@@ -27,6 +27,10 @@ const Reviews = () => {
     );
 
     const settings = {
+        autoplay: true,
+    autoplaySpeed: 3000,
+    slide: 'div',
+    cssEase: 'linear',
         dots: false,
         infinite: false,
         speed: 500,

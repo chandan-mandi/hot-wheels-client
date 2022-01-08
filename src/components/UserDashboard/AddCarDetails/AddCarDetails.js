@@ -12,7 +12,10 @@ import { faCloudUploadAlt } from '@fortawesome/free-solid-svg-icons';
 const AddCarDetails = () => {
     const { register, handleSubmit, reset } = useForm();
     const onSubmit = async data => {
-        const loading = toast.loading("Loading.....")
+        if (!data.img[0]) {
+            return toast.error('Please upload an image!');
+        }
+        const loading = toast.loading('Uploading...Please wait!')
         let imageURL = "";
         console.log(data)
         if(data.img[0]){
@@ -69,7 +72,7 @@ const AddCarDetails = () => {
                                 <Col md={6} sm={12}>
                                     <label>Mileage</label>
                                     <input
-                                        type="text"
+                                        type="number"
                                         className="our-form-input"
                                         defaultValue=""
                                         {...register("mileage", { required: true })}
@@ -82,7 +85,7 @@ const AddCarDetails = () => {
                                     <label>Car Price</label>
                                     <input
                                         className="our-form-input"
-                                        type="text"
+                                        type="number"
                                         defaultValue=""
                                         {...register("price", { required: true })}
                                         placeholder="Car Price"
@@ -102,7 +105,7 @@ const AddCarDetails = () => {
                                         type="file"
                                         id="upload"
                                         hidden="hidden"
-                                        {...register("img", { required: true })}
+                                        {...register("img")}
                                         placeholder="Upload Photo"
                                     />
                                 </Col>

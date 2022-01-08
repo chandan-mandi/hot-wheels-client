@@ -3,16 +3,48 @@ import React from 'react';
 import { Col, Row, Button } from 'react-bootstrap';
 import { useForm } from 'react-hook-form';
 import toast, { Toaster } from 'react-hot-toast';
+import swal from 'sweetalert';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faCloudUploadAlt } from '@fortawesome/free-solid-svg-icons';
+
+
 
 const AddCarDetails = () => {
     const { register, handleSubmit, reset } = useForm();
-    const onSubmit = data => {
-        console.log(data);
-        axios.post('https://safe-crag-22535.herokuapp.com/availableCars', data)
+    const onSubmit = async data => {
+        const loading = toast.loading("Loading.....")
+        let imageURL = "";
+        console.log(data)
+        if(data.img[0]){
+            const imageData = new FormData();
+            imageData.set('key', 'acb2d4c7a68ef1bf06d396d73adb600a')
+            imageData.append('image', data.img[0]);
+            try {
+                const res = await axios.post("https://api.imgbb.com/1/upload", imageData);
+                console.log(res)
+                imageURL = res.data.data.display_url;
+                toast.dismiss(loading);
+            } catch (error) {
+                toast.dismiss(loading);
+                return toast.error('Failed to upload the image!');
+            }
+        }
+        const serviceInfo = {
+            name: data.name,
+            mileage: data.mileage,
+            price: data.price,
+            img: imageURL,
+            details: data.details
+        }
+        console.log(serviceInfo)
+        axios.post('https://safe-crag-22535.herokuapp.com/availableCars', serviceInfo)
             .then(res => {
                 if (res.data.insertedId) {
-                    toast.success('Car Details Successfully Uploaded')
+                    toast.success('Added', {
+                        id: loading,
+                    });
                     reset();
+                    return swal("Successfully Added!", "Your car has been successfully added.", "success");
                 }
             })
     }
@@ -56,14 +88,22 @@ const AddCarDetails = () => {
                                         placeholder="Car Price"
                                     />
                                 </Col>
-                                <Col md={6} sm={12}>
+                                <Col md={6} sm={12} className='mt-1'>
                                     <label>Car Image</label>
+                                    <Button
+                                        as={"label"}
+                                        htmlFor="upload"
+                                        variant="outline-primary"
+                                        className="d-block p-2 upload-btn">
+                                        <FontAwesomeIcon icon={faCloudUploadAlt} className="mr-2" />Upload Image
+                                    </Button>
                                     <input
                                         className="our-form-input"
-                                        type="text"
-                                        defaultValue=""
+                                        type="file"
+                                        id="upload"
+                                        hidden="hidden"
                                         {...register("img", { required: true })}
-                                        placeholder="Put Car Image Link"
+                                        placeholder="Upload Photo"
                                     />
                                 </Col>
                             </Row>

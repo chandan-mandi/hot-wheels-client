@@ -12,12 +12,12 @@ const CarCard = ({ car, loading }) => {
         history.push(uri)
     }
     return (
-        <Col md={4} className="py-5" onClick={() => handleCarDetail(_id)}>
+        <Col xl={4} md={6} lg={6} sm={12} className="py-5" >
             <div className="car-card">
                 <Fade bottom duration={1000} distance="40px">
-                    <h2>{name.charAt(0).toUpperCase() + name.slice(1)}</h2>
+                    <h2>{name?.charAt(0).toUpperCase() + name?.slice(1)}</h2>
                     <div className="car-img">
-                        {loading ? <Spinner animation="border" variant="danger" /> : <img src={img} alt="" />}
+                        <img src={img} alt="" onClick={() => handleCarDetail(_id)}/>
                     </div>
                     <div className="match-details">
                         <div className="team1">

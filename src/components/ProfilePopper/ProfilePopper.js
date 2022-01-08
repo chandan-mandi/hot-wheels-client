@@ -7,7 +7,7 @@ const ProfilePopper = () => {
     const { user, Logout } = useAuth();
     const { email, displayName: name, photoURL: img } = user;
     const signOut = () => {
-        Logout();
+        Logout()
         toast.error('Logged Out')
     }
     return (

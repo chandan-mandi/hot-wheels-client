@@ -25,7 +25,6 @@ const BookingCar = () => {
     }, [])
 
     const onSubmit = data => {
-        console.log(data);
         data.carId = id;
         data.status = "pending";
         data.orderTime = new Date().toLocaleDateString('en-GB');

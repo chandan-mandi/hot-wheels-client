@@ -1,7 +1,10 @@
+.car-details {
+    background-color: #FAFAFA;
+}
 .car-img-box {
     width: 100%;
     overflow: hidden;
-    height: 350px;
+    height: 300px;
     object-fit: cover;
     border-radius: 5px;
 }
@@ -10,9 +13,6 @@
     width: 100%;
     height: 100%;
 }
-.car-details {
-    align-items: center;
-}
 .price-icon {
     color: red;
     margin-right: 10px;
@@ -20,4 +20,28 @@
 .car-price {
     font-size: 26px;
     font-weight: bold;
+}
+.car-content-box {
+    align-content: space-around;
+    flex-direction: column;
+}
+.car-keySpec {
+    background-color: #FFF;
+}
+.car-specification {
+    margin-right: 35px;
+    padding: 15px;
+}
+.spec-text p {
+    white-space: nowrap;
+    margin: 0;
+    text-align: center;
+}
+.spec-icon {
+    font-size: 27px;
+    text-align: center;
+}
+.spec-text p:first-child, 
+.spec-icon .svg-inline--fa {
+    color: rgba(36,39,44,.5);
 }

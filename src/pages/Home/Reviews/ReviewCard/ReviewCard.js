@@ -5,7 +5,6 @@ import Fade from 'react-reveal/Fade';
 import './ReviewCard.css';
 
 const ReviewCard = ({ item }) => {
-    console.log(item);
     return (
         <div className="py-5">
             <div className="box">

@@ -1,7 +1,8 @@
 import React, { useEffect, useState } from 'react';
 import { Table, Button, Spinner } from 'react-bootstrap';
-import toast from 'react-hot-toast';
+import toast, { Toaster } from 'react-hot-toast';
 import { Link } from 'react-router-dom';
+import swal from 'sweetalert';
 import useAuth from '../../hooks/useAuth';
 
 const MyOrders = () => {
@@ -20,21 +21,37 @@ const MyOrders = () => {
 
     }, [user.email])
     const handleDelete = (id) => {
-        const proceed = window.confirm('Are You sure to Cancel the Booking?')
-        if (proceed) {
-            const url = `https://safe-crag-22535.herokuapp.com/deletedBooking/${id}`
-            fetch(url, {
-                method: 'DELETE'
-            })
-                .then(res => res.json())
-                .then(data => {
-                    if (data.deletedCount > 0) {
-                        toast.success('Booking Cancel')
-                        const remaining = myBookings.filter(booking => booking?._id !== id)
-                        setMyBookings(remaining);
-                    }
+        swal({
+            title: "Are you sure?",
+            text: "Are you sure you want to delete!",
+            icon: "warning",
+            buttons: [true, "Yes"],
+            dangerMode: true,
+        }).then(wantDelete => {
+            if (wantDelete) {
+                const loadingId = toast.loading("Deleting...");
+                const url = `https://safe-crag-22535.herokuapp.com/deletedBooking/${id}`
+                fetch(url, {
+                    method: 'DELETE'
                 })
-        }
+                    .then(res => res.json())
+                    .then(data => {
+                        console.log(data);
+                        toast.success('Deleted', {
+                            id: loadingId,
+                          });
+                        if (data.deletedCount > 0) {
+                            const remaining = myBookings.filter(booking => booking?._id !== id)
+                            setMyBookings(remaining);
+                            return swal("Successfully Delete!", "Your order has been successfully deleted.", "success");
+                        }
+                    })
+                    .catch(err => {
+                        toast.dismiss(loading);
+                        swal("Failed!", "Something went wrong! Please try again.", "error", { dangerMode: true })
+                    })
+            }
+        })
     }
     return (
         <div>
@@ -68,7 +85,7 @@ const MyOrders = () => {
                         </tbody>
                     ))}
             </table>
-
+            <Toaster/>
         </div>
     );
 };

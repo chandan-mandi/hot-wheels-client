@@ -1,5 +1,5 @@
 import { faApple } from '@fortawesome/free-brands-svg-icons';
-import { faCartArrowDown, faCartPlus, faChargingStation, faComment, faDollarSign, faEye, faHandsHelping, faHome, faPassport, faPeopleArrows, faSearch, faSignOutAlt, faToggleOff, faUser } from '@fortawesome/free-solid-svg-icons';
+import { faAmbulance, faCarCrash, faCartArrowDown, faCartPlus, faChargingStation, faComment, faDollarSign, faEye, faHandsHelping, faHome, faPassport, faPeopleArrows, faSearch, faSignOutAlt, faToggleOff, faUser } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import React, { useState } from 'react';
 import { Link, useRouteMatch, Switch, Route } from 'react-router-dom';
@@ -15,6 +15,8 @@ import SendReview from '../../components/UserDashboard/SendReview/SendReview';
 import Update from '../../components/UserDashboard/Update/Update';
 import AdminRoute from '../Login/AdminRoute/AdminRoute';
 import './MainDashboard.css';
+import BarCharts from '../../components/UserDashboard/Charts/BarCharts';
+import BookingPieChart from '../../components/UserDashboard/Charts/BookingPieChart';
 
 const MainDashboard = () => {
     /* let list = document.querySelectorAll('.navigation li');
@@ -82,7 +84,7 @@ const MainDashboard = () => {
                             <li>
                                 <Link to={`${url}/addCarDetails`}>
                                     <span className="icon">
-                                        <FontAwesomeIcon className="faIcon" icon={faSearch}></FontAwesomeIcon>
+                                        <FontAwesomeIcon className="faIcon" icon={faAmbulance}></FontAwesomeIcon>
                                     </span>
                                     <span className="title">Add a Car</span>
                                 </Link>
@@ -106,7 +108,7 @@ const MainDashboard = () => {
                             <li>
                                 <Link to={`${url}/manageAllCar`}>
                                     <span className="icon">
-                                        <FontAwesomeIcon className="faIcon" icon={faUser}></FontAwesomeIcon>
+                                        <FontAwesomeIcon className="faIcon" icon={faCarCrash}></FontAwesomeIcon>
                                     </span>
                                     <span className="title">Manage All Car</span>
                                 </Link>
@@ -180,6 +182,17 @@ const MainDashboard = () => {
                         </div>
                         </>}
                     </div>
+                    {/* ADD CHARTS  */}
+                    <AdminRoute path={`${path}/manageAllBooking`}>
+                    <div className="graphBox">
+                        <div className="chartBox">
+                            <BookingPieChart />
+                        </div>
+                        <div className="chartBox">
+                            <BarCharts />
+                        </div>
+                    </div>
+                    </AdminRoute>
                     {/* DETAILS  */}
                     <div className="details">
                         {/*order details list  */}

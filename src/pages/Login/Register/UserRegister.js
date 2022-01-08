@@ -5,6 +5,7 @@ import { useForm } from 'react-hook-form';
 import toast, { Toaster } from 'react-hot-toast';
 import { useHistory, useLocation } from 'react-router';
 import { Link } from 'react-router-dom';
+import swal from 'sweetalert';
 import useAuth from '../../../components/hooks/useAuth';
 import MenuBar from '../../shared/MenuBar/MenuBar';
 
@@ -15,16 +16,28 @@ const UserRegister = () => {
     const { createUser, isLoading, signInUsingGoogle } = useAuth();
     const onSubmit = data => {
         console.log(data)
+        const loading = toast.loading("Please wait...");
         createUser(data.email, data.password, data.name)
-        // toast.success('')
-        // toast.success('And SuccessFully Login')
-        if (isLoading) {
-            return <div class="spinner-border" role="status">
-                <span class="sr-only">Loading...</span>
-            </div>
-        }
-        reset();
-        history.push('/dashboard')
+        .then(res => {
+            if(res?.email){
+                toast.success("logged In", {
+                    id: loading,
+                })
+                swal("Successfully Logged In!", "You have been successfully LoggedIn.", "success")
+                .then(proceed => {
+                    if(proceed){
+                        reset();
+                        const destination = location?.state?.from || '/dashboard'
+                        history.replace(destination)
+                    }
+                })
+            }else {
+                swal("Failed!", "Something went wrong! Please try again.", "error", { dangerMode: true })
+                toast.error('Something went wrong!', {
+                    id: loading,
+                });
+            }
+        })
     };
 
     const handleGoogleLogin = () => {

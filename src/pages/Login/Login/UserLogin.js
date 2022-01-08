@@ -3,29 +3,65 @@ import { useForm } from 'react-hook-form';
 import toast, { Toaster } from 'react-hot-toast';
 import { useHistory, useLocation } from 'react-router';
 import { Link } from 'react-router-dom';
+import swal from 'sweetalert';
 import useAuth from '../../../components/hooks/useAuth';
 import MenuBar from '../../shared/MenuBar/MenuBar';
 import './Login.css';
 
 const UserLogin = () => {
     const { register, handleSubmit, reset } = useForm();
-    const { loginUsingPassword, signInUsingGoogle, isLoading, authError } = useAuth();
+    const { loginUsingPassword,user, signInUsingGoogle, isLoading, authError } = useAuth();
 
     const location = useLocation();
     const history = useHistory();
-    // const redirect_uri = location.state?.from || 'home';
 
     const onSubmit = data => {
+        const loading = toast.loading("Please wait...")
         loginUsingPassword(data.email, data.password, location, history)
-        if (isLoading) {
-            return <div class="spinner-border" role="status">
-                <span class="sr-only">Loading...</span>
-            </div>
-        }
+        .then(res => {
+            if(res?.email){
+                toast.success("logged In", {
+                    id: loading,
+                })
+                swal("Successfully Logged In!", "You have been successfully LoggedIn.", "success")
+                .then(proceed => {
+                    if(proceed){
+                        const destination = location?.state?.from || '/dashboard'
+                        history.replace(destination)
+                    }
+                })
+            }else {
+                swal("Failed!", "Something went wrong! Please try again.", "error", { dangerMode: true })
+                toast.error('Something went wrong!', {
+                    id: loading,
+                });
+            }
+        })
         reset();
+       
     };
     const handleGoogleLogin = () => {
-        signInUsingGoogle(location, history)
+        const loading = toast.loading("Please wait...")
+        signInUsingGoogle()
+        .then(res => {
+            if(res?.email){
+                toast.success("logged In", {
+                    id: loading,
+                })
+                swal("Successfully Logged In!", "You have been successfully LoggedIn.", "success")
+                .then(proceed => {
+                    if(proceed){
+                        const destination = location?.state?.from || '/dashboard'
+                        history.replace(destination)
+                    }
+                })
+            }else {
+                swal("Failed!", "Something went wrong! Please try again.", "error", { dangerMode: true })
+                toast.error('Something went wrong!', {
+                    id: loading,
+                });
+            }
+        })
     }
     return (
         <div className="login-page">
@@ -60,7 +96,7 @@ const UserLogin = () => {
                     <h3>Login with social media</h3>
                     <ul className="sci">
                         <li><img src="https://cdn-icons-png.flaticon.com/512/20/20837.png" alt="" /></li>
-                        <li onClick={handleGoogleLogin}><img src="https://cdn-icons.flaticon.com/png/512/104/premium/104093.png?token=exp=1637010902~hmac=152beb063acce40f3aaa86073b06c1fc" alt="" /></li>
+                        <li onClick={handleGoogleLogin}><img src="https://cdn-icons-png.flaticon.com/512/2991/2991147.png" alt="" /></li>
                         <li><img src="https://cdn-icons-png.flaticon.com/512/733/733609.png" alt="" /></li>
                     </ul>
                 </div>

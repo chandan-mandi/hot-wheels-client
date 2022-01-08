@@ -1,5 +1,5 @@
 import initializeAuthentication from "../../pages/Login/firebase/firebase.init"
-import { getAuth, signInWithPopup, GoogleAuthProvider, createUserWithEmailAndPassword, signInWithEmailAndPassword, onAuthStateChanged, signOut } from "firebase/auth";
+import { getAuth, signInWithPopup, GoogleAuthProvider, createUserWithEmailAndPassword, signInWithEmailAndPassword, onAuthStateChanged, signOut, getIdToken } from "firebase/auth";
 import { useEffect, useState } from "react";
 import toast from "react-hot-toast";
 
@@ -63,6 +63,8 @@ const useFirebase = () => {
         onAuthStateChanged(auth, (user) => {
 
             if (user) {
+                getIdToken(user)
+                .then(idToken => localStorage.setItem('idToken', idToken))
                 const uid = user.uid;
                 setUser(user)
             } else {

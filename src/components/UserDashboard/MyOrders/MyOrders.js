@@ -4,22 +4,37 @@ import toast, { Toaster } from 'react-hot-toast';
 import { Link } from 'react-router-dom';
 import swal from 'sweetalert';
 import useAuth from '../../hooks/useAuth';
+import { useHistory } from 'react-router-dom';
+
 
 const MyOrders = () => {
     const { user } = useAuth();
     const [myBookings, setMyBookings] = useState([]);
     const [loading, setLoading] = useState(true);
+    const navigate = useHistory();
     console.log(myBookings);
 
     useEffect(() => {
-        fetch(`https://safe-crag-22535.herokuapp.com/myBooking/${user.email}`)
-            .then(res => res.json())
+        fetch(`http://localhost:5000/myBooking/${user.email}`,{
+            headers: {
+                'authorization': `Bearer ${localStorage.getItem('idToken')}`
+            }
+        } )
+            .then(res => {
+                console.log(res)
+                if(res.status === 200){
+                    return res.json()
+                }
+                else if(res.status === 401){
+                    navigate.push('/login')
+                }
+            })
             .then(data => {
                 setMyBookings(data)
                 setLoading(false);
             })
 
-    }, [user.email])
+    }, [])
     const handleDelete = (id) => {
         swal({
             title: "Are you sure?",

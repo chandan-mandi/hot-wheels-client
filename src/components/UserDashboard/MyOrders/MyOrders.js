@@ -15,7 +15,7 @@ const MyOrders = () => {
     console.log(myBookings);
 
     useEffect(() => {
-        fetch(`http://localhost:5000/myBooking/${user.email}`,{
+        fetch(`https://safe-crag-22535.herokuapp.com/myBooking/${user.email}`,{
             headers: {
                 'authorization': `Bearer ${localStorage.getItem('idToken')}`
             }
